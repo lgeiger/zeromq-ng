@@ -36,9 +36,6 @@ fi
 
 mkdir -p "${PATH_PREFIX}" && cd "${PATH_PREFIX}"
 
-echo ${ARTIFACT}
-echo ${SRC_DIR}
-
 if [ -f "${ARTIFACT}" ]; then
   echo "Found previously built libzmq; skipping rebuild..."
 else
@@ -51,10 +48,11 @@ else
 
   test -d "${SRC_DIR}" || tar xzf "${TARBALL}"
 
-  echo "Building libzmq..."
-
-  if [ "${npm_config_zmq_draft}" = "true" ] || [ "${ZMQ_DRAFT}" = "true" ]; then
+  if [ "${npm_config_zmq_draft}" = "true" ]; then
     BUILD_OPTIONS="-DENABLE_DRAFTS=ON ${BUILD_OPTIONS}"
+    echo "Building libzmq with draft API..."
+  else
+    echo "Building libzmq..."
   fi
 
   # ClangFormat include causes issues but is not required to build.

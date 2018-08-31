@@ -1,4 +1,4 @@
-test/unit test/unit/compat
+test/unit test/unit/draft test/unit/compat
 --require choma
 --harmony
 --use_strict

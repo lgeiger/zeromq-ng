@@ -1,5 +1,6 @@
 {
   'variables': {
+    'zmq_draft%': 'false',
     'zmq_shared%': 'false',
   },
 
@@ -45,6 +46,12 @@
       ],
 
       'conditions': [
+        ["zmq_draft == 'true'", {
+          'defines': [
+            'ZMQ_BUILD_DRAFT_API',
+          ]
+        }],
+
         ["zmq_shared == 'true'", {
           'link_settings': {
             'libraries': ['-lzmq'],
